@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
-export default (props) => (
-  <View style={styles.container}>
-    <Text style={styles.value}>{props.value}</Text>
-    <Button onPress={() => props.onPress()} title="Increment" />
-  </View>
-);
+class Increment extends Component {
+  render() {
+    console.log(this.props);
+    return (
+      <View style={styles.container}>
+        <Text style={styles.value}>{this.props.value}</Text>
+        <Button title="Increment" />
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = state => ({ ...state.incrementReducer });
+
+export default connect(mapStateToProps)(Increment);
 
 const styles = StyleSheet.create({
   container: {
