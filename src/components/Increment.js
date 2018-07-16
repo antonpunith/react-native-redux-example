@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class Increment extends Component {
   render() {
@@ -8,15 +9,15 @@ class Increment extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.value}>{this.props.value}</Text>
-        <Button title="Increment" />
+        <Button onPress={this.props.incrementValue} title="Increment" />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.incrementReducer });
+const mapStateToProps = state => ({ ...state });
 
-export default connect(mapStateToProps)(Increment);
+export default connect(mapStateToProps, actions)(Increment);
 
 const styles = StyleSheet.create({
   container: {
